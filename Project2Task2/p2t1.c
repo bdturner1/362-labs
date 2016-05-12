@@ -33,6 +33,7 @@ int phys_to_log(physaddr_t* phaddr) {
 	return logicalAddr;
 }
 int write(int logical_block_num, int num_of_sectors, void *buffer){
+	printf("Testing write()...\n");
 	physaddr_t tmpPhAddr;
 	log_to_phys(logical_block_num, &tmpPhAddr);
 
@@ -57,6 +58,7 @@ This function copies num_of_sectors sectors from the disk to the buffer starting
 You should validate the parameters before serving the request.
 **/
 int read(int logical_block_num, int num_of_sectors, void **buffer){
+	printf("Testing read()...\n");
 	physaddr_t tmpPhAddr;
 	log_to_phys(logical_block_num, &tmpPhAddr);
 	if(tmpPhAddr.cyl > NUM_OF_CYLS)

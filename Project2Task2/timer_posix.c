@@ -33,13 +33,14 @@ void testDisk()
 	physAddr.head = rand() % NUM_OF_HEADS;
 	physAddr.sect = rand() % NUM_OF_SECTS;
 	//dbg rand() vals:
-	//printf("cyl:%d head:%d sect:%d\n", physAddr.cyl,physAddr.head,physAddr.sect);
+	printf("Cyl:%d Head:%d Sect:%d\n", physAddr.cyl,physAddr.head,physAddr.sect);
 	logicalAddress = phys_to_log(&physAddr);
 	//printf("%d\n", logicalAddress);
 	/*
 	 * insert read/write testing here.
 	 * */
 	int randSectSize = rand() % 10;
+	printf("Logical Block Address: %d\n", logicalAddress);
 	if(isRead == 1){
 		void **buffer;
 		read(logicalAddress, randSectSize, &buffer);
@@ -59,7 +60,7 @@ void testDisk()
 		//then verify stuff was actually written
 		void** buffer;
 		read(logicalAddress, randSectSize, &buffer);
-		printf("SHOULD SEE RANDOM DATA:\n%s", buffer);
+		printf("Random Data:%s\n", buffer);
 	}
 	log_to_phys(logicalAddress, &physAddr);
 	//printf("cyl:%d head:%d sect:%d\n", physAddr.cyl,physAddr.head,physAddr.sect);
